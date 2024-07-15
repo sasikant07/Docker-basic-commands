@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  # this is nginx container 1 (long syntax)
+  nginx-example-1:
+    image: nginx:latest
+    container_name: nginx-example-1
+    ports:
+      - protocol: tcp
+        published: 8080
+        target: 80
+
+  # this is nginx container 2 (short syntax)
+  nginx-example-2:
+    image: nginx:latest
+    container_name: nginx-example-2
+    ports:
+      - "8081:80"
