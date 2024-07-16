@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  mongodb-env:
+    image: mogo:latest
+    container_name: mongodb-example
+    ports:
+      - "27017:17017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: admin
