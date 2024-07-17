@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  mongodb-depends-on:
+    image: mogo:latest
+    container_name: mongodb-depends-on
+    ports:
+      - "27017:17017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: admin
+    nwtworks:
+      - network_example
+      
+  mongodb-express:
+    image: mongo-express:latest
+    container_name: mongodb-express-depends-on
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_PASSWORD: admin
+      ME_CONFIG_MONGODB_SERVER: mongodb-depends-on
+    networks:
+      - network_example
+    depends_on:
+      mongodb-depends-on
+ 
+networks:
+  network_example:
+    name: my_network_docker
+    driver: bridge
